@@ -2,6 +2,7 @@ package com.merge.properties.controller;
 
 import com.merge.properties.entity.CommonKeys;
 import com.merge.properties.entity.Keys;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import java.io.File;
@@ -17,6 +18,9 @@ import com.merge.properties.utils.ExcelUtil;
 @RestController
 @RequestMapping("/api")
 public class MergeController {
+
+    @Value("${output.directory}")
+    private String outputPath;
 
     @PostMapping("/merge")
     public ResponseEntity<?> mergeProperties(
@@ -78,7 +82,7 @@ public class MergeController {
             File excelFile = null;
             try {
                 // Create the output directory if it doesn't exist
-                String outputDir = System.getProperty("user.dir") + File.separator + "output";
+                String outputDir = outputPath;
                 File outputDirFile = new File(outputDir);
                 if (!outputDirFile.exists()) {
                     boolean dirCreated = outputDirFile.mkdirs();
