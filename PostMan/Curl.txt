@@ -1,0 +1,3 @@
+curl -X POST "http://localhost:8080/api/merge" \
+  -F "file1=@/path/to/first.properties" \
+  -F "file2=@/path/to/second.properties"
