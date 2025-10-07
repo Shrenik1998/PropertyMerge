@@ -95,14 +95,8 @@ public class MergeController {
                 
                 System.out.println("Attempting to create Excel file at: " + excelFile.getAbsolutePath());
                 
-                // Update the Excel file with common keys
-                ExcelUtil.updateCommonKeysInExcel(excelFilePath, commonKeys);
-
-                // Update the Excel file with old unique keys
-                ExcelUtil.updateUniqueKeysInExcel(excelFilePath, oldUniqueKeys,"OldUniqueKeys");
-
-                // Update the Excel file with new unique keys
-                ExcelUtil.updateUniqueKeysInExcel(excelFilePath, newUniqueKeys,"NewUniqueKeys");
+                // Update the Excel file with all sheets
+                ExcelUtil.updateAllSheetsInExcel(excelFilePath, commonKeys, oldUniqueKeys, newUniqueKeys);
                 
                 // Verify the file was created and has content
                 if (!excelFile.exists() || excelFile.length() == 0) {
