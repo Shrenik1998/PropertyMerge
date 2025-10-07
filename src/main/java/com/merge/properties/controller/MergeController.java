@@ -67,6 +67,13 @@ public class MergeController {
                     oldUniqueKeys.add(new Keys((String)key, preUpg.getProperty((String)key)));
                 }
             }
+            //keys that are there in old but not in new
+            for (Object key : postUpg.keySet()) {
+                if (!preUpg.containsKey(key)) {
+                    newUniqueKeys.add(new Keys((String)key, postUpg.getProperty((String)key)));
+                }
+            }
+
 
             File excelFile = null;
             try {
@@ -90,6 +97,12 @@ public class MergeController {
                 
                 // Update the Excel file with common keys
                 ExcelUtil.updateCommonKeysInExcel(excelFilePath, commonKeys);
+
+                // Update the Excel file with old unique keys
+                ExcelUtil.updateUniqueKeysInExcel(excelFilePath, oldUniqueKeys,"OldUniqueKeys");
+
+                // Update the Excel file with new unique keys
+                ExcelUtil.updateUniqueKeysInExcel(excelFilePath, newUniqueKeys,"NewUniqueKeys");
                 
                 // Verify the file was created and has content
                 if (!excelFile.exists() || excelFile.length() == 0) {
