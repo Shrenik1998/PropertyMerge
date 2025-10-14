@@ -27,6 +27,18 @@ public class MergeController {
         @RequestParam("file1") MultipartFile file1,
         @RequestParam("file2") MultipartFile file2) {
 
+        //delete output directory if it exists
+        File outputDirFiles = new File(outputPath);
+        if (outputDirFiles.exists()) {
+            File[] files = outputDirFiles.listFiles();
+            if (files != null) {
+                for (File file : files) {
+                    file.delete();
+                }
+            }
+            outputDirFiles.delete();
+        }
+
         if (file1.isEmpty() || file2.isEmpty()) {
             Map<String, String> error = new HashMap<>();
             error.put("error", "Both files are required");
