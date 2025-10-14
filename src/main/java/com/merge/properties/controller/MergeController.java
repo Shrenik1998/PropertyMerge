@@ -79,7 +79,6 @@ public class MergeController {
                 if (postUpg.containsKey(key)) {
                     commonKeys.add(new CommonKeys((String)key, preUpg.getProperty((String)key), postUpg.getProperty((String)key)));
                 }else{
-                    System.out.println("test test");
                     oldUniqueKeys.add(new Keys((String)key, preUpg.getProperty((String)key)));
                 }
             }

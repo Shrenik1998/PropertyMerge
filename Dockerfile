@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy JAR
-COPY target/properties-0.0.2-SNAPSHOT.jar app.jar
+COPY target/properties-0.0.3-SNAPSHOT.jar app.jar
 
 # Create output directory (optional, to match your app path)
 RUN mkdir -p /app/output
