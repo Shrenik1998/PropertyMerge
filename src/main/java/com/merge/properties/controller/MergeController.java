@@ -110,21 +110,16 @@ public class MergeController {
                 // Read the file into a byte array
                 byte[] fileContent = Files.readAllBytes(excelFile.toPath());
                 
-                // Set up response headers for JSON response
+                // Set up response headers for file download
                 HttpHeaders headers = new HttpHeaders();
-                headers.setContentType(MediaType.APPLICATION_JSON);
-                
-                // Create a response map with file details
-                Map<String, Object> response = new HashMap<>();
-                response.put("filename", excelFileName);
-                response.put("filepath", excelFile.getAbsolutePath());
-                response.put("size", fileContent.length);
-                response.put("message", "File generated successfully");
+                headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+                headers.setContentDispositionFormData("attachment", excelFileName);
+                headers.setContentLength(fileContent.length);
                 
                 System.out.println("Successfully generated Excel file at: " + excelFile.getAbsolutePath());
                 
-                // Return the file details in JSON format
-                return new ResponseEntity<>(response, headers, HttpStatus.OK);
+                // Return the file as a response
+                return new ResponseEntity<>(fileContent, headers, HttpStatus.OK);
                     
             } catch (Exception e) {
                 e.printStackTrace();
