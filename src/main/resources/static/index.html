@@ -92,18 +92,18 @@
 </head>
 <body>
     <div class="container">
-        <h1>Properties File Merger</h1>
-        <p>Upload two .properties files to compare and merge them into an Excel file.</p>
+        <h1>Properties File Comparison Report</h1>
+        <!--<p>Upload two .properties files to compare and merge them into an Excel file.</p>-->
         
         <form id="mergeForm" enctype="multipart/form-data">
             <div class="file-upload">
-                <label for="file1" class="file-label">Choose First Properties File</label>
+                <label for="file1" class="file-label">Choose Old Properties File</label>
                 <input type="file" id="file1" name="file1" class="file-input" accept=".properties" required>
                 <div id="file1-name" class="file-name">No file selected</div>
             </div>
             
             <div class="file-upload">
-                <label for="file2" class="file-label">Choose Second Properties File</label>
+                <label for="file2" class="file-label">Choose New Properties File</label>
                 <input type="file" id="file2" name="file2" class="file-input" accept=".properties" required>
                 <div id="file2-name" class="file-name">No file selected</div>
             </div>
